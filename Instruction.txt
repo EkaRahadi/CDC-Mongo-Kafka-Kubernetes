@@ -1,0 +1,13 @@
+#Create Cluster on GCP
+gcloud container clusters create cdc-mongodb --zone asia-southeast1-a
+
+#Create Credentials
+gcloud container clusters get-credentials cdc-mongodb \
+    --zone asia-southeast1-a \
+    --project cdc-spanner-debezium-bq
+
+#Get Context All Cluster
+kubectl config get-contexts
+
+#Change Current Context
+kubectl config use-context cdc-mongodb
