@@ -1,13 +1,37 @@
 #Create Cluster on GCP
 gcloud container clusters create cdc-mongodb --zone asia-southeast1-a
 
-#Create Credentials
-gcloud container clusters get-credentials cdc-mongodb \
-    --zone asia-southeast1-a \
-    --project cdc-spanner-debezium-bq
-
 #Get Context All Cluster
 kubectl config get-contexts
 
 #Change Current Context
 kubectl config use-context cdc-mongodb
+
+#Create Credentials
+gcloud container clusters get-credentials cdc-mongodb \
+    --zone asia-southeast1-a \
+    --project cdc-spanner-debezium-bq
+
+===================================================================
+#Enter mongo interactive commands
+kubectl exec -it mongo-0 -- mongo
+
+#Initiate ReplicaSet
+rs.initiate()
+
+#Insert Member of replica set | mongo-0 is the pod name and mongo is the service name
+var cfg = rs.conf()
+cfg.member[0].host="mongo-0.mongo:27017"
+rs.reconfig(cfg)
+
+#Check Status
+rs.status()
+
+#Insert another member to replica set
+rs.add("mongo-1.mongo:27017")
+rs.add("mongo-2.mongo:27017")
+
+mongo_url : mongodb://mongo-0.mongo:27017,mongo-1.mongo:27017,mongo-2.mongo:27017
+
+#Optional scale up to 4 pods and you need to add manual to replica set
+kubectl scale sts mongo --replicas 4
