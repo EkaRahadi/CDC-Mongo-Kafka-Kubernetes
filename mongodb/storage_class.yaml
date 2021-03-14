@@ -4,7 +4,7 @@ metadata:
   name: slow-mongodb
 parameters:
   type: pd-standard
-  fstype: NTFS
+  fstype: ext4
 provisioner: kubernetes.io/gce-pd
 reclaimPolicy: Delete
 volumeBindingMode: WaitForFirstConsumer
