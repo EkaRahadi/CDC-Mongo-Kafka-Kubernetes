@@ -27,10 +27,14 @@ spec:
           volumeMounts:
             - name: mongo-volume
               mountPath: /data/db
-      volumes:
-        - name: mongo-volume
-          persistentVolumeClaim:
-            claimName: pvc-mongodb
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-volume
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
 ---
 apiVersion: v1
 kind: Service

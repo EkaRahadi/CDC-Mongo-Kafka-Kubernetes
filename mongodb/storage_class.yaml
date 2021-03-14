@@ -2,7 +2,9 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: slow-mongodb
-provisioner: kubernetes.io/gce-pd
 parameters:
   type: pd-standard
-  fstype: ext4
+  fstype: NTFS
+provisioner: kubernetes.io/gce-pd
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
