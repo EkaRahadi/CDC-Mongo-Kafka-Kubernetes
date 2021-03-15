@@ -29,7 +29,7 @@ spec:
       restartPolicy: Always
   volumeClaimTemplates:
     - metadata:
-        name: zookeper-data
+        name: zookeeper-data
       spec:
         accessModes: ["ReadWriteOnce"]
         storageClassName: slow-zookeeper
