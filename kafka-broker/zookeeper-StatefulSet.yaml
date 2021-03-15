@@ -1,18 +1,17 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  labels:
-    io.kompose.service: zookeeper
   name: zookeeper
 spec:
   replicas: 1
+  serviceName: "zookeeper"
   selector:
     matchLabels:
-      io.kompose.service: zookeeper
+      app: zookeeper
   template:
     metadata:
       labels:
-        io.kompose.service: zookeeper
+        app: zookeeper
     spec:
       containers:
         - env:
@@ -28,12 +27,11 @@ spec:
               mountPath: /var/lib/kafka/data
           name: zookeeper
       restartPolicy: Always
-      volumeClaimTemplates:
-        - metadata:
-            name: zookeper-data
+  volumeClaimTemplates:
+    - metadata:
+        name: zookeper-data
       spec:
-        accessModes:
-          - ReadWriteOnce
+        accessModes: ["ReadWriteOnce"]
         storageClassName: slow-zookeeper
         resources:
           requests:

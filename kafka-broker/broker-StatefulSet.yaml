@@ -1,18 +1,17 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  labels:
-    io.kompose.service: broker
   name: broker
 spec:
   replicas: 1
+  serviceName: "broker"
   selector:
     matchLabels:
-      io.kompose.service: broker
+      app: broker
   template:
     metadata:
       labels:
-        io.kompose.service: broker
+        app: broker
     spec:
       containers:
         - env:
@@ -46,12 +45,11 @@ spec:
             - containerPort: 9092
             - containerPort: 29092
       restartPolicy: Always
-      volumeClaimTemplates:
-        - metadata:
-            name: kafka-data
+  volumeClaimTemplates:
+    - metadata:
+        name: kafka-data
       spec:
-        accessModes:
-          - ReadWriteOnce
+        accessModes: ["ReadWriteOnce"]
         storageClassName: slow-kafka
         resources:
           requests:

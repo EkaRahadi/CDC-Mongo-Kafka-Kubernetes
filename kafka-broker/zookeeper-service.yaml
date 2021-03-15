@@ -1,17 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: E:\KULIAH\Magang Eka Rahadi\CDC docker-compose\kompose.exe convert
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: zookeeper
   name: zookeeper
 spec:
   ports:
-  - name: zookeeper
-    port: 2181
-    targetPort: 2181
+    - name: zookeeper
+      port: 2181
+      targetPort: 2181
   selector:
     io.kompose.service: zookeeper

@@ -1,21 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: E:\KULIAH\Magang Eka Rahadi\CDC docker-compose\kompose.exe convert
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: broker
   name: broker
 spec:
   ports:
-  - name: broker
-    port: 29092
-    targetPort: 29092
-  - name: broker-host
-    port: 9092
-    targetPort: 9092
+    - name: broker
+      port: 29092
+      targetPort: 29092
+    - name: broker-host
+      port: 9092
+      targetPort: 9092
   selector:
     io.kompose.service: broker
 status:
