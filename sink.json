@@ -1,0 +1,13 @@
+{
+    "name":"mongodb-sink-connector",
+    "config":{
+       "connector.class":"",
+       "tasks.max":"1",
+       "topics":"cdc-mongo.smart-surey.users",
+       "key.converter":"io.confluent.connect.json.JsonSchemaConverter",
+       "value.converter":"io.confluent.connect.json.JsonSchemaConverter",
+       "connection.uri":"mongodb://mongo-consumer-0.mongo-cdc:27017", 
+       "database":"smart-survey",
+       "collection":"users"
+    }
+ }

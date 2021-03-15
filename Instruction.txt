@@ -35,3 +35,8 @@ mongo_url : mongodb://mongo-0.mongo:27017,mongo-1.mongo:27017,mongo-2.mongo:2701
 
 #Optional scale up to 4 pods and you need to add manual to replica set
 kubectl scale sts mongo --replicas 4
+
+
+
+==================
+kubectl get service my-lb-service --output yaml

@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo-consumer
+spec:
+  selector:
+    matchLabels:
+      app: mongo-consumer
+  serviceName: "mongo-cdc"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mongo-consumer
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: mongo-consumer
+          image: mongo
+          command:
+            - mongod
+            - "--bind_ip_all"
+            - "--replSet"
+            - rs0
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongo-volume
+              mountPath: /data/db
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-volume
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: slow-mongodb-consumer
+        resources:
+          requests:
+            storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-cdc
+  labels:
+    app: mongo-cdc
+spec:
+  ports:
+    - name: mongo-consumer
+      port: 27017
+      targetPort: 27017
+  clusterIP: None
+  selector:
+    app: mongo-consumer
