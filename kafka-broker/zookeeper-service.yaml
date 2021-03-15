@@ -9,4 +9,4 @@ spec:
       targetPort: 2181
   clusterIP: None
   selector:
-    io.kompose.service: zookeeper
+    app: zookeeper

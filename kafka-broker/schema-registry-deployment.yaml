@@ -19,7 +19,6 @@ spec:
             - name: SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS
               value: broker:29092
           image: confluentinc/cp-schema-registry:6.1.0
-          imagePullPolicy: ""
           name: schema-registry
           ports:
             - containerPort: 8081
