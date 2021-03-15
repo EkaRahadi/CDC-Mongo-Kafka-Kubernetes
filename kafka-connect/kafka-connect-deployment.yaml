@@ -34,7 +34,7 @@ spec:
             - name: CONNECT_GROUP_ID
               value: kafka-connect
             - name: CONNECT_KEY_CONVERTER
-              value: org.apache.kafka.connect.storage.StringConverter
+              value: org.apache.kafka.connect.json.JsonConverter
             - name: CONNECT_LOG4J_APPENDER_STDOUT_LAYOUT_CONVERSIONPATTERN
               value: "[%d] %p %X{connector.context}%m (%c:%L)%n"
             - name: CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR
@@ -52,11 +52,10 @@ spec:
             - name: CONNECT_STATUS_STORAGE_TOPIC
               value: _connect-status
             - name: CONNECT_VALUE_CONVERTER
-              value: io.confluent.connect.avro.AvroConverter
+              value: org.apache.kafka.connect.json.JsonConverter
             - name: CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL
-              value: http://schema-registry:8081
+              value: schema-registry:8081
           image: confluentinc/cp-kafka-connect-base:6.0.1
-          imagePullPolicy: ""
           name: kafka-connect
           ports:
             - containerPort: 8083
