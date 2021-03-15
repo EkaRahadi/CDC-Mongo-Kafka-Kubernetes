@@ -9,4 +9,6 @@ spec:
     - name: kafka-connect
       port: 8083
       targetPort: 8083
-  # clusterIP: None
+  clusterIP: None
+  selector:
+    app: kafka-connect
