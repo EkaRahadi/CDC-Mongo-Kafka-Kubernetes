@@ -13,7 +13,6 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: zookeeper
-  strategy: {}
   template:
     metadata:
       annotations:
@@ -26,9 +25,9 @@ spec:
       containers:
         - env:
             - name: ZOOKEEPER_CLIENT_PORT
-              value: '2181'
+              value: "2181"
             - name: ZOOKEEPER_TICK_TIME
-              value: '2000'
+              value: "2000"
           image: confluentinc/cp-zookeeper:6.1.0
           ports:
             - containerPort: 2181
