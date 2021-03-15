@@ -10,7 +10,6 @@ spec:
     - name: broker-host
       port: 9092
       targetPort: 9092
+  clusterIP: None
   selector:
     io.kompose.service: broker
-status:
-  loadBalancer: {}
