@@ -24,7 +24,7 @@ spec:
             - containerPort: 2181
           volumeMounts:
             - name: zookeeper-data
-              mountPath: /var/lib/zookeeper/data
+              mountPath: /var/lib/kafka/data
           name: zookeeper
       restartPolicy: Always
   volumeClaimTemplates:
