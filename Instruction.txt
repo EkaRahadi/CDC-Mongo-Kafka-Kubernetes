@@ -21,7 +21,7 @@ rs.initiate()
 
 #Insert Member of replica set | mongo-0 is the pod name and mongo is the service name
 var cfg = rs.conf()
-cfg.member[0].host="mongo-0.mongo:27017"
+cfg.members[0].host="mongo-0.mongo:27017"
 rs.reconfig(cfg)
 
 #Check Status
