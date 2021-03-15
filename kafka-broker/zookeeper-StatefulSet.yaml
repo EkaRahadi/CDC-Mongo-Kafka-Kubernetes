@@ -1,10 +1,6 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  annotations:
-    kompose.cmd: 'E:\KULIAH\Magang Eka Rahadi\CDC docker-compose\kompose.exe convert'
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
   labels:
     io.kompose.service: zookeeper
   name: zookeeper
@@ -15,10 +11,6 @@ spec:
       io.kompose.service: zookeeper
   template:
     metadata:
-      annotations:
-        kompose.cmd: 'E:\KULIAH\Magang Eka Rahadi\CDC docker-compose\kompose.exe convert'
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
         io.kompose.service: zookeeper
     spec:

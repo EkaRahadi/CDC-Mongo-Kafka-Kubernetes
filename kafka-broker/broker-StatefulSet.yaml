@@ -1,10 +1,6 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  annotations:
-    kompose.cmd: 'E:\KULIAH\Magang Eka Rahadi\CDC docker-compose\kompose.exe convert'
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
   labels:
     io.kompose.service: broker
   name: broker
@@ -15,10 +11,6 @@ spec:
       io.kompose.service: broker
   template:
     metadata:
-      annotations:
-        kompose.cmd: 'E:\KULIAH\Magang Eka Rahadi\CDC docker-compose\kompose.exe convert'
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
       labels:
         io.kompose.service: broker
     spec:
@@ -53,7 +45,6 @@ spec:
           ports:
             - containerPort: 9092
             - containerPort: 29092
-          resources: {}
       restartPolicy: Always
       volumeClaimTemplates:
         - metadata:
