@@ -37,8 +37,7 @@ spec:
               value: "zookeeper:2181"
           image: "confluentinc/cp-kafka:6.1.0"
           volumeMounts:
-            - name: kafka-data
-              mountPath: /var/lib/kafka/data
+            - mountPath: /var/lib/kafka/data
           name: broker
           ports:
             - containerPort: 9092
