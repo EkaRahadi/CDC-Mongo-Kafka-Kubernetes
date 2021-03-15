@@ -13,6 +13,7 @@ spec:
         app: broker
     spec:
       containers:
+        name: broker
         - env:
             - name: KAFKA_ADVERTISED_LISTENERS
               value: "PLAINTEXT://broker:29092,PLAINTEXT_HOST://broker-host:9092"
