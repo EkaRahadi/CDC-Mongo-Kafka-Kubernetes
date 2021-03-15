@@ -4,7 +4,7 @@ metadata:
   name: broker
 spec:
   replicas: 1
-  serviceName: "broker"
+  serviceName: broker
   selector:
     matchLabels:
       app: broker
@@ -44,24 +44,12 @@ spec:
             - containerPort: 9092
             - containerPort: 29092
       restartPolicy: Always
-      - env:
-            - name: ZOOKEEPER_CLIENT_PORT
-              value: "2181"
-            - name: ZOOKEEPER_TICK_TIME
-              value: "2000"
-          image: confluentinc/cp-zookeeper:6.1.0
-          ports:
-            - containerPort: 2181
-          volumeMounts:
-            - name: kafka-data
-              mountPath: /var/lib/kafka/data
-          name: zookeeper
-      restartPolicy: Always
   volumeClaimTemplates:
     - metadata:
         name: kafka-data
       spec:
-        accessModes: ["ReadWriteOnce"]
+        accessModes:
+          - ReadWriteOnce
         storageClassName: slow-kafka
         resources:
           requests:
