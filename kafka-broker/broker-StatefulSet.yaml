@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: broker
 spec:
@@ -36,21 +36,21 @@ spec:
             - name: KAFKA_ZOOKEEPER_CONNECT
               value: "zookeeper:2181"
           image: "confluentinc/cp-kafka:6.1.0"
-          volumeMounts:
-            - name: kafka-data
-              mountPath: /var/lib/kafka/data
-          name: broker
-          ports:
-            - containerPort: 9092
-            - containerPort: 29092
-      restartPolicy: Always
-  volumeClaimTemplates:
-    - metadata:
-        name: kafka-data
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        storageClassName: slow-kafka
-        resources:
-          requests:
-            storage: 1Gi
+  #         volumeMounts:
+  #           - name: kafka-data
+  #             mountPath: /var/lib/kafka/data
+  #         name: broker
+  #         ports:
+  #           - containerPort: 9092
+  #           - containerPort: 29092
+  #     restartPolicy: Always
+  # volumeClaimTemplates:
+  #   - metadata:
+  #       name: kafka-data
+  #     spec:
+  #       accessModes:
+  #         - ReadWriteOnce
+  #       storageClassName: slow-kafka
+  #       resources:
+  #         requests:
+  #           storage: 1Gi
