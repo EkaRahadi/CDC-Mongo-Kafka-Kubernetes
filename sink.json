@@ -1,15 +1,16 @@
 {
-    "name":"mongodb-sink-connector",
-    "config":{
-       "connector.class":"com.mongodb.kafka.connect.MongoSinkConnector",
-       "tasks.max":"1",
-       "topics":"cdc-mongo.smart-surey.users",
-       "key.converter":"io.confluent.connect.json.JsonSchemaConverter",
-       "key.converter.schema.registry.url":"schema-registry:8081",
-       "value.converter":"io.confluent.connect.json.JsonSchemaConverter",
-       "value.converter.schema.registry.url":"schema-registry:8081",
-       "connection.uri":"mongodb://mongo-consumer-0.mongo-cdc:27017", 
-       "database":"smart-survey",
-       "collection":"users"
-    }
- }
+   "name":"mongodb-sink-connector",
+   "config":{
+      "connector.class":"com.mongodb.kafka.connect.MongoSinkConnector",
+      "change.data.capture.handler": "com.mongodb.kafka.connect.sink.cdc.mongodb.ChangeStreamHandler",
+      "tasks.max":"1",
+      "key.converter": "io.confluent.connect.avro.AvroConverter",
+      "value.converter": "io.confluent.connect.avro.AvroConverter",
+      "topics":"cdc-mongo.smart-survey.users",
+      "key.converter.schema.registry.url":"http://34.87.99.152:8081",
+      "value.converter.schema.registry.url":"http://34.87.99.152:8081",
+      "connection.uri":"mongodb://mongo-consumer-0.mongo-cdc:27017", 
+      "database":"smart-survey",
+      "collection":"users"
+   }
+}

@@ -15,6 +15,7 @@ gcloud container clusters get-credentials cdc-mongodb \
 ===================================================================
 #Enter mongo interactive commands
 kubectl exec -it mongo-0 -- mongo
+kubectl run mongo --rm -it --image mongo -- sh
 
 #Initiate ReplicaSet
 rs.initiate()
@@ -37,6 +38,6 @@ mongo_url : mongodb://mongo-0.mongo:27017,mongo-1.mongo:27017,mongo-2.mongo:2701
 kubectl scale sts mongo --replicas 4
 
 
-
+./kafka-console-consumer --bootstrap-server broker:29092 --topic cdc-mongo.smart-survey.users --from-beginning
 ==================
 kubectl get service my-lb-service --output yaml

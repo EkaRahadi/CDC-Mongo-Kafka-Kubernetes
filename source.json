@@ -1,15 +1,15 @@
 {
-    "name":"mongodb-source-connector",
-    "config":{
-       "connector.class":"com.mongodb.kafka.connect.MongoSourceConnector",
-       "tasks.max":"1",
-       "key.converter":"io.confluent.connect.json.JsonSchemaConverter",
-       "key.converter.schema.registry.url":"schema-registry:8081",
-       "value.converter":"io.confluent.connect.json.JsonSchemaConverter",
-       "value.converter.schema.registry.url":"schema-registry:8081",
-       "connection.uri":"mongodb://mongo-0.mongo:27017,mongo-1.mongo:27018,mongo-2.mongo:27019",
-       "database":"smart-survey",
-       "collection":"users",
-       "topic.prefix":"cdc-mongo"
-    }
- }
+   "name":"mongodb-source-connector",
+   "config":{
+      "connector.class":"com.mongodb.kafka.connect.MongoSourceConnector",
+      "tasks.max":"1",
+      "key.converter": "io.confluent.connect.avro.AvroConverter",
+      "value.converter": "io.confluent.connect.avro.AvroConverter",
+      "key.converter.schema.registry.url":"http://34.87.99.152:8081",
+      "value.converter.schema.registry.url":"http://34.87.99.152:8081",
+      "connection.uri":"mongodb://mongo-0.mongo:27017,mongo-1.mongo:27017,mongo-2.mongo:27017",
+      "database":"smart-survey",
+      "collection":"users",
+      "topic.prefix":"cdc-mongo"
+   }
+}
